@@ -52,26 +52,26 @@ class Frame4 extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children:[
-                                   // GAFAR : REMOVE THE ALERT DIALOG VIEW
+                                   // GAFAR : REMOVE THE ALERT DIALOG VIEW //
                                   ]
                                 ),
                                 actions: [
                                   TextButton(
                                     child: Text(
-                                      'DELETE',
+                                      'DELETE', //
                                       style: TextStyle(
                                         color: Color.fromARGB(255,86, 0, 232),
                                       ),
                                     ),
                                     onPressed: (){
-                                      HttpFetchShipmentService().removeShipment('Test10').then((value) {
+                                      HttpFetchShipmentService().removeShipment('Test10').then((value) { //
                                        var count = 0;
                                         Navigator.popUntil(context, (route) {
                                           return count++ == 3;
-                                        });
+                                        }); //
 
 
-                                      }); //GAFAR: REMOVE SHIPMENT BY shipmentReference & UPDATE LOCAL DATA & POP TO ROOT PAGE
+                                      }); //GAFAR: REMOVE SHIPMENT BY shipmentReference & UPDATE LOCAL DATA & POP TO ROOT PAGE //
                                     },
                                   ),
                                   TextButton(
@@ -91,7 +91,7 @@ class Frame4 extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          'DELETE', // GAFAR : UPDATE THE VIEW FROM RESCHEDULE TO DELETE
+                          'DELETE', // GAFAR : UPDATE THE VIEW FROM RESCHEDULE TO DELETE //
                           style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 1.2,

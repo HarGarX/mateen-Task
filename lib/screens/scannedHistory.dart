@@ -164,11 +164,11 @@ class _ScannedHistoryState extends State<ScannedHistory> {
               icon: Icon(Icons.cached),
               color: Colors.white,
               onPressed: (){
-                HttpFetchShipmentService().getShipments(0).then((value) { // GAFAR: AOUTO REFRESH FOR THE SCANNED HISTORY PAGE FROM THE DATA BASE
-                  Navigator.pushReplacement(
+                HttpFetchShipmentService().getShipments(0).then((value) { // GAFAR: AUTO REFRESH FOR THE SCANNED HISTORY PAGE FROM THE DATA BASE
+                  Navigator.pushReplacement( //
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => super.widget));
+                          builder: (BuildContext context) => super.widget)); //
                 });
 
               },
