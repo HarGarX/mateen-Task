@@ -203,7 +203,9 @@ class _ScannedHistoryState extends State<ScannedHistory> {
               // GAFAR : LOG OUT APPLIED DELETE THE AUTHCODE & DRIVER CODE //
               Secret.driverCode = '';
               Secret.authCode = '' ;
-              Navigator.of(context).pushReplacementNamed('/');
+
+              Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+              // Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           TextButton(
