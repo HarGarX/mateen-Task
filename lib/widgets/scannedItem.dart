@@ -68,6 +68,12 @@ class ScannedItem extends StatelessWidget {
               ),
               SizedBox(height:10.0),
               Text(
+                'Shipment Reference: $shipmentReference',
+                style: TextStyle(
+                  letterSpacing: 1.1,
+                ),
+              ),
+              Text(
                 'Customer Name: ',
                 style: TextStyle(
                   letterSpacing: 1.1,

@@ -47,8 +47,10 @@ class HttpFetchShipmentService  {
     List<shipments.Data> shipmentsFromDataBase; //
 
     box = await Hive.openBox('ship'); //
+    print("DOSE KEY EXISTS");
+    print(Hive.box('ship').containsKey('ships'));
     // var box = await Hive.openBox('ship');
-    if (state == 1 ) { //
+    if (state == 1  && !Hive.box('ship').containsKey('ships')) { //
       try { //
         Response response = await get(logUrl, headers: {
           "Authorization": "${Secret.authCode}",
@@ -61,7 +63,8 @@ class HttpFetchShipmentService  {
           await box.put('ships', myShipments); //
           print("FROM API"); //
           print(myShipments.runtimeType);//
-          return myShipments;//
+          return await box.get('ships');
+          // return myShipments;//
         }
       } catch (e) {
         print(e);
@@ -92,6 +95,8 @@ class HttpFetchShipmentService  {
       shipmentsFromDataBase.removeWhere((element) =>
       element.shipmentReference == 'Test10',
       );//
+      print("AFTER DELETE$shipmentsFromDataBase"); //
+
       await box.put('ships',shipmentsFromDataBase);
       return shipmentsFromDataBase;
     } catch (e) {

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:mateen/models/httpService.dart';
 import 'package:mateen/predef/colorPalette.dart';
+import 'package:mateen/screens/scannedHistory.dart';
 import 'package:mateen/widgets/mateenDatePicker.dart';
 import 'package:mateen/widgets/scannedItemInfo.dart';
 
@@ -69,6 +70,10 @@ class Frame4 extends StatelessWidget {
                                         Navigator.popUntil(context, (route) {
                                           return count++ == 3;
                                         }); //
+                                       // pushAndRemoveUntil(newRoute, (route) => false);
+                                       Navigator.of(context).pushAndRemoveUntil(
+                                               MaterialPageRoute(builder: (BuildContext context) => ScannedHistory()),
+                                               ModalRoute.withName('/'));
 
 
                                       }); //GAFAR: REMOVE SHIPMENT BY shipmentReference & UPDATE LOCAL DATA & POP TO ROOT PAGE //
