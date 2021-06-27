@@ -1,5 +1,9 @@
-class Shipments {
+import 'package:hive/hive.dart';
+part 'shipments.g.dart';
+@HiveType(typeId: 0)
+class Shipments  extends HiveObject{
   bool status;
+  @HiveField(0)
   List<Data> data;
 
   Shipments({this.status, this.data});
@@ -23,20 +27,29 @@ class Shipments {
     return data;
   }
 }
-
-class Data {
+@HiveType(typeId: 1)
+class Data extends HiveObject {
   String shipmentReference;
   String cODAmount;
   String deliveryCity;
   String deliveryArea;
   String barcode;
 
-  Data(
-      {this.shipmentReference,
-      this.cODAmount,
-      this.deliveryCity,
-      this.deliveryArea,
-      this.barcode});
+  Data({this.shipmentReference,
+    this.cODAmount,
+    this.deliveryCity,
+    this.deliveryArea,
+    this.barcode});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'shipmentReference': shipmentReference,
+      'cODAmount': cODAmount,
+      'deliveryCity': deliveryCity,
+      'deliveryArea': deliveryArea,
+      'barcode': barcode,
+    };
+  }
 
   Data.fromJson(Map<String, dynamic> json) {
     shipmentReference = json['Shipment Reference'];
@@ -55,4 +68,19 @@ class Data {
     data['Barcode'] = this.barcode;
     return data;
   }
+  @override
+  String toString() {
+    return '{shipmentReference: $shipmentReference,cODAmount: $cODAmount, deliveryCity: $deliveryCity, deliveryArea: $deliveryArea ,barcode: $barcode}';
+  }
+  // List<Data> toData(List<Map<String, dynamic>> maps) {
+  //   return List.generate(maps.length, (i) {
+  //     return Data(
+  //       this.shipmentReference : maps [i]['Shipment Reference'],
+  //       cODAmount: maps [i]['COD Amount'],
+  //       deliveryCity: maps [i]['Delivery City'],
+  //       deliveryArea: maps [i]['Delivery Area'],
+  //       barcode: maps [i]['Barcode'],
+  //     );
+  //   });
+  // }
 }

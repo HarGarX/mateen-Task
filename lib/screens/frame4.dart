@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:mateen/models/httpService.dart';
 import 'package:mateen/predef/colorPalette.dart';
 import 'package:mateen/widgets/mateenDatePicker.dart';
 import 'package:mateen/widgets/scannedItemInfo.dart';
@@ -40,51 +41,37 @@ class Frame4 extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () async {
+
                           showDialog(
                             barrierDismissible: true,
                             context: context, 
                             builder: (context){
                               return AlertDialog(
-                                title: Text('Reschedule Order'),
+                                title: Text('DELETE'),
                                 content: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children:[
-                                    Row(
-                                      children: [
-                                        Text('NEW Delivery date: '),
-                                        MateenDatePicker(),
-                                      ],
-                                    ),
-                                    SizedBox(height:20),
-                                    TextField(
-                                      maxLines: 10,
-                                      decoration: InputDecoration(
-                                        labelText: 'Reason',
-                                        border:OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            const Radius.circular(5.0)
-                                          ),
-                                          borderSide: BorderSide(
-                                            width: 2,
-                                            color: Color.fromARGB(255,86, 0, 232),
-                                          )
-                                        ),
-                                        hintText: 'Input text',
-                                      ),
-                                    ),
+                                   // GAFAR : REMOVE THE ALERT DIALOG VIEW
                                   ]
                                 ),
                                 actions: [
                                   TextButton(
                                     child: Text(
-                                      'CONFIRM',
+                                      'DELETE',
                                       style: TextStyle(
                                         color: Color.fromARGB(255,86, 0, 232),
                                       ),
                                     ),
                                     onPressed: (){
-                                      Navigator.pop(context);
+                                      HttpFetchShipmentService().removeShipment('Test10').then((value) {
+                                       var count = 0;
+                                        Navigator.popUntil(context, (route) {
+                                          return count++ == 3;
+                                        });
+
+
+                                      }); //GAFAR: REMOVE SHIPMENT BY shipmentReference & UPDATE LOCAL DATA & POP TO ROOT PAGE
                                     },
                                   ),
                                   TextButton(
@@ -104,7 +91,7 @@ class Frame4 extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          'RESCHEDULE',
+                          'DELETE', // GAFAR : UPDATE THE VIEW FROM RESCHEDULE TO DELETE
                           style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 1.2,

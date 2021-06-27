@@ -108,12 +108,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 HttpLoginService loginService = new HttpLoginService();
 
                 loginService.getAuthCode(request).then((value) {
-                  print(value.status);
-                  print("GAFAR");
-                  print(value.data.toJson());
-                  print(value.data.authCode);
+                  // print(value.status);
+                  // print("GAFAR");
+                  // print(value.data.toJson());
+                  // print(value.data.authCode);
 
-                  if (value.data != null) {
+                  if (value.LoginData != null) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       backgroundColor: ColorPalette().defaultColor,
                       content: Row(
@@ -127,8 +127,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     ));
-                    Secret.authCode = value.data.authCode;
-                    Secret.driverCode = value.data.driverCode;
+                    Secret.authCode = value.LoginData.authCode; // GAFAR : SETING THE AUTH CODE & DRIVE CODE TO BE USED IN ANY REQUEST AND VALIDATE IF THE USER IS LOGED IN OR NOT
+                    Secret.driverCode = value.LoginData.driverCode;
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ScannedHistory()));
                   }

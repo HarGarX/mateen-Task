@@ -1,13 +1,13 @@
 class LoginResponse {
   final bool status;
-  final Data data;
+  final Data LoginData;
 
-  LoginResponse({this.status, this.data});
+  LoginResponse({this.status, this.LoginData});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
     status : json['status'],
-    data : json['data'] != null ? new Data.fromJson(json['data']) : null);
+    LoginData : json['data'] != null ? new Data.fromJson(json['data']) : null);
   }
 
 }
