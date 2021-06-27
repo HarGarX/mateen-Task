@@ -37,7 +37,7 @@ class HttpFetchShipmentService  {
   int count;
   var box ;
   final String logUrl =
-      //"https://www.codiraq.com/ShipmentsAPI/DriversShipments.php?driverCode=Ehmtx123"; comment this line and add another line to change the driver code
+      //"https://www.codiraq.com/ShipmentsAPI/DriversShipments.php?driverCode=Ehmtx123"; //comment this line and add another line to change the driver code
 
       "https://www.codiraq.com/ShipmentsAPI/DriversShipments.php?driverCode=${Secret.driverCode}";
 
