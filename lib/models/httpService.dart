@@ -42,7 +42,7 @@ class HttpFetchShipmentService  {
       "https://www.codiraq.com/ShipmentsAPI/DriversShipments.php?driverCode=${Secret.driverCode}";
 
   // GAFAR : CHECK THE LOCAL DATA BASE FOR THE LIST OF SHIPMET IF THERE NONE  GET LIST OF SHIPMENT FROM THE API AND INSERT THE LIST TO LOCAL DATA BASE TO BE USED AGAIN
-  Future<List<shipments.Data>> getShipments(int state) async {
+  Future<List<shipments.Data>> getShipments(int state) async { //
     List<shipments.Data> myShipments; //
     List<shipments.Data> shipmentsFromDataBase; //
 

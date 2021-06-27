@@ -68,7 +68,7 @@ class _ScannedHistoryState extends State<ScannedHistory> {
     return Scaffold(
       body: Container(
         child: FutureBuilder(
-          future: HttpFetchShipmentService().getShipments(1),
+          future: HttpFetchShipmentService().getShipments(1), //
           builder: (BuildContext context, AsyncSnapshot<List<Data>> snapshot){
             return (!snapshot.hasData) ?
               Center(child: Column(
@@ -164,7 +164,7 @@ class _ScannedHistoryState extends State<ScannedHistory> {
               icon: Icon(Icons.cached),
               color: Colors.white,
               onPressed: (){
-                HttpFetchShipmentService().getShipments(0).then((value) { // GAFAR: AUTO REFRESH FOR THE SCANNED HISTORY PAGE FROM THE DATA BASE
+                HttpFetchShipmentService().getShipments(0).then((value) { // // GAFAR: AUTO REFRESH FOR THE SCANNED HISTORY PAGE FROM THE DATA BASE
                   Navigator.pushReplacement( //
                       context,
                       MaterialPageRoute(
@@ -200,7 +200,7 @@ class _ScannedHistoryState extends State<ScannedHistory> {
             ),
             onPressed: (){
               //go back to the login page and clear the navigator stack
-              // GAFAR : LOG OUT APPLIED DELETE THE AUTHCODE & DRIVER CODE
+              // GAFAR : LOG OUT APPLIED DELETE THE AUTHCODE & DRIVER CODE //
               Secret.driverCode = '';
               Secret.authCode = '' ;
               Navigator.of(context).pushReplacementNamed('/');
