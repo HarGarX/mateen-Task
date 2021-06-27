@@ -50,7 +50,7 @@ class HttpFetchShipmentService  {
     print("DOSE KEY EXISTS");
     print(Hive.box('ship').containsKey('ships'));
     // var box = await Hive.openBox('ship');
-    if (state == 1  && !Hive.box('ship').containsKey('ships')) { //
+    if (state == 1  && Hive.box('ship').containsKey('ships')) { //
       try { //
         Response response = await get(logUrl, headers: {
           "Authorization": "${Secret.authCode}",

@@ -15,7 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String password;
   LoginRequest request;
   bool hidePassword = true;
-
+  bool isLoading = false;
+  setLoading(bool state) => setState(() => isLoading = state);
   final nameController = new TextEditingController();
   final passwordController = new TextEditingController();
 
@@ -23,6 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     request = new LoginRequest();
+    setLoading(true);
+
   }
 
   @override
@@ -96,7 +99,11 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 25),
             // ignore: deprecated_member_use
             RaisedButton(
-              onPressed: () async {
+
+              onPressed: !isLoading ? null : ()  async {
+
+                setLoading(false);
+
                 setState(() {
                   username = nameController.text;
                   password = passwordController.text;
@@ -107,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 HttpLoginService loginService = new HttpLoginService();
 
-                loginService.getAuthCode(request).then((value) {
+                await loginService.getAuthCode(request).then((value) {
                   print(value.status);
                   print("GAFAR");
 
@@ -125,12 +132,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     ));
+                    setLoading(true);
+
                     Secret.authCode = value.LoginData.authCode; // GAFAR : SETTING THE AUTH CODE & DRIVE CODE TO BE USED IN ANY REQUEST AND VALIDATE IF THE USER IS LOGED IN OR NOT
                     Secret.driverCode = value.LoginData.driverCode;
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ScannedHistory()));
                   }
                   else{
+                    setLoading(true);
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       backgroundColor: Colors.red,
                       content: Row(
@@ -140,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.white,
                           ),
                           SizedBox(width:5.0),
-                          Text('Something went wrong'),
+                          Text('Wrong User Name Or Password'),
                         ],
                       ),
                     ));

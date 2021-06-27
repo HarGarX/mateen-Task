@@ -43,6 +43,7 @@ dependencies:
   sqflite: ^1.3.0 #sqflit and found issues with saving the data
   hive: ^1.4.1+1 #HIveDb
   hive_flutter: ^0.3.0+2 # Hive DB
+  progress_indicator_button: ^0.0.3
   # flutter
   flutter:
     sdk: flutter
